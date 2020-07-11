@@ -4,32 +4,31 @@ const typeDefs = gql`
   type Show {
     id: ID!
     name: String!
-    genre: String!
+    url: String!
+    genres: [String]!
     status: String
-    isScheduled: Boolean!
+    isScheduled: Boolean
     crew:[CrewMember]
     seasons:[Season]
     gallery:[Image]
     rating:Int
     isFavorite:Boolean
-    comment:[Comment]
+    comment:Comment
+    summary:String!
+    image:String!
   }
 
   type CrewMember {
     id: ID!
     name: String
     image: String
+    type: String
   }
 
   type Season {
     id: ID!
-    title: String!
-    episodes:[Episode]
-  }
-
-  type Episode {
-    id: ID!
-    title: String!
+    url:String!
+    number: Int!
   }
 
   type Image {
@@ -50,21 +49,31 @@ const typeDefs = gql`
   }
 
   type Query {
-    Shows( limit: Int after: String): Paginate!
+    shows( limit: Int after: String): Paginate!
     show(id: ID!): Show
-    user: User   
+    user: User
+    scheduledShows:[Show]   
   }
 
   type Mutation {
-    addToWatchlist(showIds: [ID]!): Response!
+    addToWatchlist(showId: ID!): Response
+    removeShow(showId: ID!): Response
     addComment(showId: ID!): Response!
     favorite(showIds: [ID]!): Response!
-    signup(email: String!, password:String!, confirmPassword:String!): Response
-    login(email: String!, password:String): String
+    signup(email: String!, password:String!, confirmPassword:String!): UserResponse
+    login(email: String!, password:String): UserResponse
   }
+  
   type Response {
     success: Boolean!
     data: [Show]
+    showId:Int
+  }
+  type UserResponse {
+    success: Boolean!
+    id:String
+    token: String
+    email:String
   }
   type Paginate { 
     cursor: String!
