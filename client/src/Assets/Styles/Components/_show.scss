@@ -1,0 +1,62 @@
+.show{
+    width: 97%;
+    margin: 65px auto 0 auto;
+    background-color:white ;
+    padding: 10px;
+    min-height: 100vh;
+    overflow: hidden;
+    .summary{
+        padding: 5px;
+    }
+    .label{
+        font-weight: bold;
+    }
+    .value{
+        font-weight: lighter;
+        color:$secondary
+    }
+    .ant-list-split .ant-list-header {
+        font-weight: bold;
+        padding: 7% 0;
+        font-size: 1.2em;
+    }
+    .link-button{
+        text-align: center;
+         margin:2%;
+        button{
+            color:white;
+        }
+   
+    }
+    .ant-card{
+        width: 15vw; 
+        height: 50vh;   
+    }
+
+    .ant-card-bordered .ant-card-cover {
+        margin:0 3px;
+         height:79%;
+
+        img{
+            width:auto;
+            height: 100%;
+
+        }
+    }
+    .crew{
+        
+        width: 40%;
+        margin:2% auto;
+        h2{
+            padding: 30% 0 2% 0;
+        }
+
+    }
+    .watch-list-btn{
+        padding-top: 5%;
+        button{
+            color: white;
+        }
+    }
+
+}

@@ -11,11 +11,12 @@ const typeDefs = gql`
     crew:[CrewMember]
     seasons:[Season]
     gallery:[Image]
-    rating:Int
+    rating:Float
     isFavorite:Boolean
     comment:Comment
     summary:String!
     image:String!
+    premiered:String!
   }
 
   type CrewMember {
@@ -49,7 +50,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    shows( limit: Int after: String): Paginate!
+    shows: [Show]!
     show(id: ID!): Show
     user: User
     scheduledShows:[Show]   
@@ -74,12 +75,9 @@ const typeDefs = gql`
     id:String
     token: String
     email:String
+    error:String
   }
-  type Paginate { 
-    cursor: String!
-    hasMore: Boolean!
-    shows: [Show]!
-  }
+
 `;
 
 module.exports = typeDefs;
