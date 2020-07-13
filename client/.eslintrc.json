@@ -42,6 +42,7 @@
         "global-require":"off",
         "react/button-has-type":"off",
         "react/no-did-update-set-state":"off",
-        "react/jsx-props-no-spreadin":0
+        "react/jsx-props-no-spreadin":0,
+        "react/prop-types":"off"
     }
 }

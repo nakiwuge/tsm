@@ -23,26 +23,26 @@ const Modals = () => {
       type: Sequelize.DATE,
       allowNull: false,
       defaultValue: Sequelize.NOW
-   },
+    },
     updatedAt: Sequelize.DATE,
   }
   );
   
   const WatchList = db.define('watchlist', {
     id:{
-        type: Sequelize.INTEGER,
-        primaryKey:true,
-        allowNull: false,
-        unique: true,
-        autoIncrement:true
-      },
+      type: Sequelize.INTEGER,
+      primaryKey:true,
+      allowNull: false,
+      unique: true,
+      autoIncrement:true
+    },
     showId: Sequelize.INTEGER,
     userId: Sequelize.INTEGER,
     createdAt: { 
       type: Sequelize.DATEONLY,
       allowNull: false,
       defaultValue: Sequelize.NOW
-   },
+    },
     updatedAt: Sequelize.DATE,
   });
   

@@ -18,27 +18,32 @@
 
     ul{
         background-color: $primary;
-        li{
-            color: white;   
-        }
+        a{
+            color: white !important;   }
+            li {
 
-        li:hover{
-            background-color: $secondary;
-            color: white;
-            border-bottom: 2px solid $secondary;
-        }
+              color: white ;
 
+                  
+            }
+
+            li:hover{
+                background-color: $secondary;
+                color: white;
+                border-bottom: 2px solid $secondary;
+            }
+            
         #logout{
             float:right;
         }
     }
-    
-    .ant-menu-horizontal>.ant-menu-item-active{
+
+    .ant-menu-horizontal>.ant-menu-item-active {
         background-color: $secondary;
         color: white;
         border-bottom: 2px solid $secondary;
     }
-    .ant-menu-item-selected{
+    .ant-menu-item-selected {
         background-color: $secondary;
         color: white;
         border-bottom: 2px solid $secondary;

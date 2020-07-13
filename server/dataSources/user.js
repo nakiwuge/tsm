@@ -26,7 +26,6 @@ class UserApi extends DataSource {
 
   }
 
-
   async login(data) {
     const{ email,password } = data;
 
@@ -59,7 +58,7 @@ class UserApi extends DataSource {
 
       if(isScheduled.length)return { error:'The show is already added to watch list' }; 
 
-      const show = await this.db.WatchList.create({ showId,userId });
+      const show = await this.db.WatchList.create({ showId,userId, isScheduled:true });
 
       return show.dataValues;
     } catch (error) {
@@ -82,13 +81,10 @@ class UserApi extends DataSource {
       return show?{ showId }:null;
     } catch (error) {
       return { error:error.message };
-
-
     }
     
   }
 
- 
   async getSheduledShows() {
     const userId = this.context.user.id;
     if (!userId)  return { error:' Not authenticated' };

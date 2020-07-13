@@ -1,33 +1,38 @@
-import React, {useEffect, useState} from 'react';
-import { Spin, Row,Pagination,Carousel, Col, Card, Rate} from 'antd';
+import React from 'react';
+import { Spin, Row,Pagination,message, Col, Card, Rate} from 'antd';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import {Link} from 'react-router-dom'
 import {SHOW_FRAGMENT} from '../../Utils/fragments'
 
-const GET_SHOWS = gql`
-  query shows{
-    shows {
+const GET_WATCHLIST = gql`
+  query scheduled{
+    scheduledShows {
       ...showFragment 
     }
   }
   ${SHOW_FRAGMENT}
 `;
 
-const Shows = () => {
+const Watchlist = () => {
   const { 
     data, 
     loading, 
     error,
     fetchMore
-  } = useQuery(GET_SHOWS);
+  } = useQuery(GET_WATCHLIST);
+
+
+if(error){
+  return message.error(error.message)
+} 
 
   return (
     <div className="shows">
-     <h1>TV Shows</h1>
+     <h1>Your Watchlist</h1>
     {loading?<Spin className="spinner"  tip="Loading..." size="large" />
       :<Row justify="center" >
-        {data?.shows.map((item)=>(
+        {data?.scheduledShows.map((item)=>(
           <Col key={item.id}span={4}>
              <Link to={`/show/${item.id}`}>
              <Card
@@ -43,7 +48,8 @@ const Shows = () => {
                 defaultValue={item.rating/2} />
               } />
             </Card>
-          </Link>    
+          </Link>
+            
           </Col>
         ))
         } 
@@ -53,4 +59,4 @@ const Shows = () => {
   );
 };
 
-export default Shows;
+export default Watchlist;
