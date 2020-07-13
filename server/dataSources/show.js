@@ -19,6 +19,9 @@ class ShowsApi extends RESTDataSource {
       genres:show.genres,
       status:show.status,
       image:show.image.original, 
+      rating:show.rating.average,
+      summary:show.summary,
+      premiered:show.premiered
     };
   }
 

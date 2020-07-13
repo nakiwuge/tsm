@@ -1,0 +1,30 @@
+.shows{
+    text-align: center;
+    width: 97%;
+    margin: 65px auto 0 auto;
+  h1{
+      padding:3%;
+      font-size:1.5em;
+  }
+ 
+    .ant-card{
+        width: 100%; 
+        height: 100%;    
+    }
+
+    .ant-col{
+     margin: 5px;
+    }
+
+    .ant-card-bordered .ant-card-cover {
+        margin:0 1px;
+        height:70%;
+
+        img{
+            width:100%;
+            height: 100%;
+
+        }
+    }
+    
+}

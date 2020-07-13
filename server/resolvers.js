@@ -1,24 +1,11 @@
-const { paginate } = require('./utils');
 
 module.exports = {
   Query: {
-    shows: async (_, { pageSize = 20, after }, { dataSources }) => {
+    shows: async (_, { }, { dataSources }) => {
       const shows = await dataSources.ShowApi.getAllShows();
 
-      const data = paginate({
-        after,
-        pageSize,
-        results: shows
-      });
-      return {
-        shows:data,
-        cursor: data.length ? data[data.length - 1].cursor : null,
-
-        hasMore: data.length
-          ? data[data.length - 1].cursor !==
-            shows[shows.length - 1].cursor
-          : false
-      };
+    
+      return shows;
     },
     show: async (_, { id }, { dataSources }) =>{
       const data = await dataSources.ShowApi.getOneShow(id);

@@ -3,7 +3,7 @@ import NavBar from './NavBar';
 import propTypes from 'prop-types';
 import { Layout } from 'antd';
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
 const LayOut = ({ children, location }) => {
   const { pathname } = location;
@@ -17,7 +17,6 @@ const LayOut = ({ children, location }) => {
       <Content >
         {children}
       </Content>
-      {!isAuthPage&&      <Footer style={{ textAlign: 'center' }}>Tv Shows Manager 2020</Footer>}
 
     </Layout>
   );
