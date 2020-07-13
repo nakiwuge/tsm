@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
 const Modals = () => {
-  const db = new Sequelize('database', 'username', 'password'{
+  const db = new Sequelize({
     dialect: 'sqlite',
     storage: './database.sqlite'
   });

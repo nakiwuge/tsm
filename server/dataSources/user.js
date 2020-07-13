@@ -14,13 +14,13 @@ class UserApi extends DataSource {
   async addUser(data) {
     const{ email,password } = data;
  
-    if (!email || !isEmail.validate(email))  throw new Error('Invalid email');
+    if (!email || !isEmail.validate(email))  return { error:'Invalid Email' };
 
     try {
       const user = await this.db.User.create({  email, password });
       return user.dataValues ;
     } catch (error) {
-      throw new Error(error.message);
+      return { error:error.message };
 
     }
 
@@ -39,35 +39,38 @@ class UserApi extends DataSource {
         const token = Buffer.from(`${email},${user[0].dataValues.id}`).toString('base64');
         return { ...user[0].dataValues, token } ;
       }else{
-        throw new Error('Wrong password or email');
+        return { error:'Wrong password or email' };
+
       }
      
     } catch (error) {
-      throw new Error(error.message);
+      return { error:error.message };
     }
 
   }
 
   async sheduleShow(showId) {
     const userId = this.context.user &&this.context.user.id;
-    if (!userId) throw new Error('Please login to perform this action');
+    if (!userId) return { error:' Not authenticated' };
+
 
     try {
       const isScheduled = await this.db.WatchList.findAll({ where: { showId,userId } });
 
-      if(isScheduled.length) throw new Error('The show is already added to watch list');
+      if(isScheduled.length)return { error:'The show is already added to watch list' }; 
 
       const show = await this.db.WatchList.create({ showId,userId });
 
       return show.dataValues;
     } catch (error) {
-      throw new Error(error.message);
+      return { error:error.message }; 
     }
   }
 
   async removeShow(showId) {
     const userId = this.context.user.id;
-    if (!userId) throw new Error('Please login to perform this action');
+    if (!userId) return { error:' Not authenticated' };
+
     try {
       const show = await this.db.WatchList.destroy({
         where: {
@@ -78,7 +81,8 @@ class UserApi extends DataSource {
 
       return show?{ showId }:null;
     } catch (error) {
-      throw new Error(error.message);
+      return { error:error.message };
+
 
     }
     
@@ -87,13 +91,12 @@ class UserApi extends DataSource {
  
   async getSheduledShows() {
     const userId = this.context.user.id;
-    console.log('userId',userId);
-    if (!userId) throw new Error('Please login to perform this action');
+    if (!userId)  return { error:' Not authenticated' };
 
     try {
       const shows = await this.db.WatchList.findAll({ where:{ userId } });
 
-      console.log('kkkkk',shows);
+
       const showIds = [];
       for (const id of shows) {
         showIds.push(id.dataValues.showId);
@@ -102,8 +105,7 @@ class UserApi extends DataSource {
       return showIds;
         
     } catch (error) {
-      throw new Error(error.message);
-
+      return { error:error.message };
     }
  
   }

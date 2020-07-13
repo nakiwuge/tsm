@@ -1,0 +1,59 @@
+.auth{
+    background-color: white;
+    height: 100vh;
+    width: 100%;
+    .header{
+        width: 100%;
+        height:100vh;
+         background-color:$primary;
+         border-top: 40px solid $primary;
+        .logo{
+            background-color:white;
+            width: 100%;
+            text-align: center;
+            img{
+                width: 30%;
+                height:auto;
+            }
+        }
+        .shows-image{
+            border-top: 40px solid $primary;
+
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            img{
+                width: 100%;
+                height:auto;
+            } 
+        }
+        p{
+            width:80%;
+            margin:8% auto;
+            font-size: 1.5em;
+            text-align: center;
+            color: rgb(196, 191, 191);
+            font-weight: lighter;
+        }
+      
+
+    }
+    h1{
+        font-size: 2em;
+        font-weight: bold;
+        color:$secondary;
+        text-align: center;
+        margin-top: 4%;
+    }
+
+     form{
+         width:70%;
+         margin: 8% auto;
+     }  
+}
+.ant-layout-content{
+    padding: 0;
+    width: 100% !important;
+    margin: 0 !important;
+    height: 100vh;
+}

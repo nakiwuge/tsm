@@ -40,29 +40,29 @@ module.exports = {
   Mutation:{
     signup:async (_,{ email,password,confirmPassword }, { dataSources })=>{
       if (password!==confirmPassword){
-        throw new Error('Passwords do not match');
+        return { success:false, error:'Passwords do not match' };
       }
-
+  
       const data = await dataSources.UserApi.addUser({ email,password });
-      
-      return  data?{ ...data, success:true }:null;
+  
+      return  data.error?{ success:false, error:data.error }:{ ...data, success:true };
     },
     login:async (_,{ email,password }, { dataSources })=>{
       const data = await dataSources.UserApi.login({ email,password });
 
-      return data?{ ...data, success:true }:null;
+      return data.error?{ success:false, error:data.error }:{ ...data, success:true };
     },
 
     addToWatchlist:async (_,{ showId }, { dataSources })=>{
       const data = await dataSources.UserApi.sheduleShow(showId);
 
-      return data? { ...data, success:true }:null;
+      return data.error?{ success:false, error:data.error }: { ...data, success:true };
     },
 
     removeShow:async (_,{ showId }, { dataSources })=>{
       const data = await dataSources.UserApi.removeShow(showId);
 
-      return data?{ ...data, success:true }:null;
+      return data.error?{ success:false, error:data.error }:{ ...data, success:true };
     },
   }
 };
