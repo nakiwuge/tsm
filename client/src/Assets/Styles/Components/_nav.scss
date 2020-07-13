@@ -1,0 +1,49 @@
+.nav-bar{
+    z-index: 2;
+    position: fixed;
+    width:100%;
+    .logo-nav{
+        width: 11%;
+        height: 65px;
+        background-color: white;
+        float: left;
+
+        img{
+            background-color: white;
+            padding: 5px;
+            width: auto;
+            height: 100%
+        }
+    }
+
+    ul{
+        background-color: $primary;
+        li{
+            color: white;   
+        }
+
+        li:hover{
+            background-color: $secondary;
+            color: white;
+            border-bottom: 2px solid $secondary;
+        }
+
+        #logout{
+            float:right;
+        }
+    }
+    
+    .ant-menu-horizontal>.ant-menu-item-active{
+        background-color: $secondary;
+        color: white;
+        border-bottom: 2px solid $secondary;
+    }
+    .ant-menu-item-selected{
+        background-color: $secondary;
+        color: white;
+        border-bottom: 2px solid $secondary;
+    }
+}
+.ant-layout-header{
+    padding: 0;
+}

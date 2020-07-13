@@ -1,9 +1,9 @@
 import React from 'react';
 import NavBar from './NavBar';
-
+import propTypes from 'prop-types';
 import { Layout } from 'antd';
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 const LayOut = ({ children, location }) => {
   const { pathname } = location;
@@ -11,16 +11,23 @@ const LayOut = ({ children, location }) => {
   const isAuthPage = urls.includes(pathname);
 
   return (
-    <Layout className="layout">
-
+    <Layout className="layout" >
       <div className="logo" />
       {!isAuthPage&&<NavBar />}
-      <Content style={{ padding: '0 50px' }}>
+      <Content >
         {children}
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Tv Shows Manager</Footer>
+      {!isAuthPage&&      <Footer style={{ textAlign: 'center' }}>Tv Shows Manager 2020</Footer>}
+
     </Layout>
   );
+};
+
+LayOut.propTypes={
+  children:propTypes.element.isRequired,
+  location:{
+    pathname:propTypes.string.isRequired
+  }
 };
 
 export default LayOut;

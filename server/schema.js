@@ -74,6 +74,7 @@ const typeDefs = gql`
     id:String
     token: String
     email:String
+    error:String
   }
   type Paginate { 
     cursor: String!
